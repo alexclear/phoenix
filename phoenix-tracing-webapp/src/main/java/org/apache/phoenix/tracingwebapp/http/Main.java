@@ -64,7 +64,7 @@ public final class Main extends Configured implements Tool {
         //setting up the embedded server
         ProtectionDomain domain = Main.class.getProtectionDomain();
         URL location = domain.getCodeSource().getLocation();
-        String webappDirLocation = location.toString().split("target")[0] +"src/main/webapp";
+        String webappDirLocation = Main.class.getClassLoader().getResource("src/main/webapp").toExternalForm();
         Server server = new Server(port);
         WebAppContext root = new WebAppContext();
 
