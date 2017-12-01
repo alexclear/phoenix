@@ -111,12 +111,16 @@ public class TraceServlet extends HttpServlet {
     String query = null;
     // Check the parent Id, trace id type or long or not.
     try {
-        Long.parseLong(parentId);
-        Long.parseLong(traceId);
+        if(parentId != null) {
+            Long.parseLong(parentId);
+        }
+        if(parentId != null) {
+            Long.parseLong(traceId);
+        }
     } catch (NumberFormatException e) {
     	throw new RuntimeException("The passed parentId/traceId is not a number.", e);
     }
-    if(!logic.equals(LOGIC_AND) || !logic.equals(LOGIC_OR)) {
+    if(!logic.equals(LOGIC_AND) && !logic.equals(LOGIC_OR)) {
     	throw new RuntimeException("Wrong logical operator passed to the query. Only "+ LOGIC_AND+","+LOGIC_OR+" are allowed.") ;
     }
     if(parentId != null && traceId != null) {
